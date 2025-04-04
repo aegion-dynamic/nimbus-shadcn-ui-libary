@@ -33,7 +33,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       formats: ['es', 'umd'],
-      name: 'NimbusShadcn',
+      name: 'nimbus-shadcn',
       fileName: (format) => `index.${format}.js`
     },
     rollupOptions: {
