@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
 import LocationSelector from "./location-input";
 
 // Define types for country and state

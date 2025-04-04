@@ -1,10 +1,9 @@
-import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { Toaster } from "./sonner";
+import { Toaster } from "./toaster";
 import { toast } from "sonner";
 
 const meta: Meta = {
-  title: "Components/Sonner",
+  title: "Components/Toaster",
   component: Toaster,
   tags: ["autodocs"],
   parameters: {

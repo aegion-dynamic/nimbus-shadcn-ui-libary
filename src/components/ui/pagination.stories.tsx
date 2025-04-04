@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import {
   Pagination,
   PaginationContent,
@@ -21,7 +21,13 @@ type Story = StoryObj<typeof Pagination>;
 
 export const Primary: Story = {
   render: () => {
-    const [activePage, setActivePage] = useState(1);
+    return <TheStory />;
+  }
+};
+
+
+function TheStory() {
+  const [activePage, setActivePage] = useState(1);
     const totalPages = 5;
 
     return (
@@ -67,5 +73,4 @@ export const Primary: Story = {
         </PaginationContent>
       </Pagination>
     );
-  },
-};
+  }

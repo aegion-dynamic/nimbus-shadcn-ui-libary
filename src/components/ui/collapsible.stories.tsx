@@ -1,4 +1,3 @@
-import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "./collapsible";
 import { Button } from "@/components/ui/button";

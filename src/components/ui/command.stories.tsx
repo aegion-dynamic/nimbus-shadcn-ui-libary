@@ -7,7 +7,6 @@ import {
   CommandEmpty,
   CommandGroup,
   CommandItem,
-  CommandShortcut,
 } from "./command";
 
 const meta: Meta = {
