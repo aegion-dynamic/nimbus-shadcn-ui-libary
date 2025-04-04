@@ -4,10 +4,20 @@ import path from "path"
 import { resolve } from 'path';
 import tailwindcss from "@tailwindcss/vite"
 import libInjectCss from 'vite-plugin-css-injected-by-js';
+import dts from "vite-plugin-dts";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), libInjectCss(),
+  plugins: [react(), tailwindcss(), libInjectCss(), dts({
+    insertTypesEntry: true,
+    rollupTypes: true,
+    exclude: [
+      "node_modules",
+      "**/*.stories.tsx",
+      "**/*.stories.ts",
+    ]
+  }
+  )
   ],
   resolve: {
     alias: {
@@ -22,9 +32,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'NimbusShadcnUI',
       formats: ['es', 'umd'],
-      fileName: (format) => `nimbus-shadcn-ui.${format}.js`
+      name: 'NimbusShadcn',
+      fileName: (format) => `index.${format}.js`
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
@@ -34,6 +44,11 @@ export default defineConfig({
           'react-dom': 'ReactDOM'
         }
       }
-    }
-  }
+    },
+    //Generates sourcemaps for the built files,
+    //aiding in debugging.
+    sourcemap: true,
+    //Clears the output directory before building.
+    emptyOutDir: true,
+  },
 })
