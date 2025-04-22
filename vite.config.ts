@@ -8,16 +8,32 @@ import dts from "vite-plugin-dts";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), libInjectCss(), dts({
-    insertTypesEntry: true,
-    rollupTypes: true,
-    exclude: [
-      "node_modules",
-      "**/*.stories.tsx",
-      "**/*.stories.ts",
-    ]
-  }
-  )
+  plugins: [
+    react(),
+    tailwindcss(),
+    libInjectCss(),
+    dts({
+      insertTypesEntry: true,
+      rollupTypes: true,
+      include: [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+      ],
+      exclude: [
+        "node_modules",
+        "**/*.stories.tsx",
+        "**/*.stories.ts",
+      ],
+      outDir:"dist",
+      compilerOptions: {
+        baseUrl: ".",
+        paths: {
+          "@/*": ["src/*"],
+        },
+        declaration: true,
+      }
+    }
+    )
   ],
   resolve: {
     alias: {
@@ -26,6 +42,9 @@ export default defineConfig({
   },
   css: {
     modules: {
+      scopeBehaviour: 'local',
+      // Generates a unique class name for each CSS module
+      generateScopedName: 'nimbus-shadcn-[name]__[local]__[hash:base64:5]',
       localsConvention: 'camelCase'
     }
   },
