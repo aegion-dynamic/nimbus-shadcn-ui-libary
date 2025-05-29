@@ -6,7 +6,7 @@ import tailwindcss from "@tailwindcss/vite"
 import libInjectCss from 'vite-plugin-css-injected-by-js';
 import dts from "vite-plugin-dts";
 
-// https://vite.dev/config/
+// Configuration for Next.js entry point
 export default defineConfig({
   plugins: [
     react(),
@@ -31,25 +31,24 @@ export default defineConfig({
       ],
     })
   ],
-  css: {
-    modules: {
-      scopeBehaviour: 'local',
-      // Generates a unique class name for each CSS module
-      generateScopedName: 'nimbus-shadcn-[name]__[local]__[hash:base64:5]',
-      localsConvention: 'camelCase'
-    }
-  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  css: {
+    modules: {
+      scopeBehaviour: 'local',
+      generateScopedName: 'nimbus-shadcn-[name]__[local]__[hash:base64:5]',
+      localsConvention: 'camelCase'
+    }
+  },
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
+      entry: resolve(__dirname, 'src/next.ts'),
       formats: ['es', 'umd'],
-      name: 'nimbus-shadcn',
-      fileName: (format) => `index.${format}.js`
+      name: 'nimbus-shadcn-next',
+      fileName: (format) => `next.${format}.js`
     },
     rollupOptions: {
       external: [
@@ -73,12 +72,10 @@ export default defineConfig({
           react: 'React',
           'react-dom': 'ReactDOM',
           'react/jsx-runtime': 'jsxRuntime'
-        },
-        // Remove preserveModules to fix the conflict with inlineDynamicImports
-        inlineDynamicImports: false
+        }
       }
     },
     sourcemap: true,
-    emptyOutDir: false, // Changed to false to prevent clearing Next.js build
+    outDir: 'dist',
   },
 })

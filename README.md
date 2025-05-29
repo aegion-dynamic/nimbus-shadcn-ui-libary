@@ -24,7 +24,8 @@ npm install github:yourusername/nimbus-shadcn-ui-libary
 
 ## Usage
 
-### Using Components
+### Standard React Applications
+
 Import and use components directly:
 
 ```tsx
@@ -40,6 +41,29 @@ function MyComponent() {
   );
 }
 ```
+
+### Next.js Applications
+
+For Next.js applications, import from the `/next` entry point to avoid React Server Component conflicts:
+
+```tsx
+'use client'; // Use this if creating a client component
+
+// Import from the Next.js-specific entry point
+import { Button, Input, Card } from "nimbus-shadcn/next";
+
+function MyComponent() {
+  return (
+    <Card>
+      <h2>Login Form</h2>
+      <Input placeholder="Username" />
+      <Button>Submit</Button>
+    </Card>
+  );
+}
+```
+
+> **Important:** Components that use React Context (Form, ToggleGroup, Chart, Carousel, FileUploader, Sidebar) must always be used within a client component in Next.js. Always import these from `nimbus-shadcn/next` to ensure proper client/server boundary handling.
 
 ### Styling 
 
