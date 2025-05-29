@@ -11,24 +11,83 @@ This library serves as the foundation for all frontend development in Nimbus pro
 Add the library to your Nimbus project:
  
 ```bash
-npm install @nimbus/shadcn-ui
+# Install from npm
+npm install nimbus-shadcn
 # or
-yarn add @nimbus/shadcn-ui
+yarn add nimbus-shadcn
 # or
-pnpm add @nimbus/shadcn-ui
+pnpm add nimbus-shadcn
+
+# Install from GitHub
+npm install github:yourusername/nimbus-shadcn-ui-libary
 ```
 
 ## Usage
 
-### 1. Import Styles
-Add the following import to your root layout or main stylesheet:
+### Using Components
+Import and use components directly:
 
 ```tsx
-import "@nimbus/shadcn-ui/styles.css"
+import { Button, Input, Card } from "nimbus-shadcn";
+
+function MyComponent() {
+  return (
+    <Card>
+      <h2>Login Form</h2>
+      <Input placeholder="Username" />
+      <Button>Submit</Button>
+    </Card>
+  );
+}
 ```
 
-### 2. Using Components
-Import and use components directly:
+### Styling 
+
+The component library automatically injects its styles when imported. All CSS is prefixed with `nimbus-shadcn` to avoid conflicts with other libraries.
+
+### Customizing Components
+
+You can customize the appearance of components by passing className props:
+
+```tsx
+<Button className="my-custom-button">
+  Custom Button
+</Button>
+```
+
+## Component Documentation
+
+The library includes the following components:
+
+- Button
+- Input
+- Card
+- Dialog
+- Dropdown
+- ... and many more
+
+Each component accepts standard React props plus component-specific props for customization.
+
+## Troubleshooting
+
+If you're having trouble finding components after installation, try the following:
+
+1. Make sure you're importing directly from the package root:
+   ```tsx
+   import { Button } from 'nimbus-shadcn';
+   ```
+
+2. Check that the package is correctly installed in your node_modules:
+   ```bash
+   npm ls nimbus-shadcn
+   ```
+
+3. Clear your node_modules cache and reinstall:
+   ```bash
+   npm cache clean --force
+   rm -rf node_modules
+   npm install
+   ```
 
 ```tsx
 import { Button, Card } from "@nimbus/shadcn-ui"

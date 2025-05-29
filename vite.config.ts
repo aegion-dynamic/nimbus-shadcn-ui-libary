@@ -11,35 +11,26 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    libInjectCss(),
+    libInjectCss({
+      topExecutionPriority: true,
+    }),
     dts({
+      tsconfigPath: './tsconfig.json',
       insertTypesEntry: true,
-      rollupTypes: true,
+      outDir: 'dist',
       include: [
-        "src/**/*.ts",
-        "src/**/*.tsx",
+        "src/**/*.ts", 
+        "src/**/*.tsx"
       ],
       exclude: [
-        "node_modules",
-        "**/*.stories.tsx",
+        "node_modules", 
+        "**/*.stories.tsx", 
         "**/*.stories.ts",
+        "**/*.test.tsx", 
+        "**/*.test.ts"
       ],
-      outDir:"dist",
-      compilerOptions: {
-        baseUrl: ".",
-        paths: {
-          "@/*": ["src/*"],
-        },
-        declaration: true,
-      }
-    }
-    )
+    })
   ],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
   css: {
     modules: {
       scopeBehaviour: 'local',
@@ -47,6 +38,11 @@ export default defineConfig({
       generateScopedName: 'nimbus-shadcn-[name]__[local]__[hash:base64:5]',
       localsConvention: 'camelCase'
     }
+  },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
   },
   build: {
     lib: {
@@ -64,10 +60,7 @@ export default defineConfig({
         }
       }
     },
-    //Generates sourcemaps for the built files,
-    //aiding in debugging.
     sourcemap: true,
-    //Clears the output directory before building.
     emptyOutDir: true,
   },
 })
